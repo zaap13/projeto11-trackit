@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import logo from "../assets/images/logo.jpeg";
+import ButtonTemplate from "./ButtonTemplate";
 
 export default function SignTemplate({ children }) {
   return (
@@ -32,12 +33,14 @@ const Template = styled.div`
     height: 45px;
     border: 1px solid #d5d5d5;
     border-radius: 5px;
+    :disabled {
+      background-color: #f2f2f2;
+    }
   }
   button {
     width: 303px;
     height: 45px;
-    background: #52b6ff;
-    border-radius: 4.63636px;
+    
   }
   p {
     font-weight: 400;

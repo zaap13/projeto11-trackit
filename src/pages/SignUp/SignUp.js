@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { BASE_URL } from "../../constants/url";
 import axios from "axios";
+import ButtonTemplate from "../../templates/ButtonTemplate";
+
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
@@ -10,9 +12,11 @@ export default function SignUp() {
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   function handleSignUp(e) {
     e.preventDefault();
+    setLoading(true);
 
     axios
       .post(`${BASE_URL}/auth/sign-up`, {
@@ -22,9 +26,13 @@ export default function SignUp() {
         password,
       })
       .then((res) => {
+        setLoading(false);
         navigate("/");
       })
-      .catch((err) => alert(err.response.data.message));
+      .catch((err) => {
+        alert(err.response.data.message);
+        setLoading(false);
+      });
   }
 
   return (
@@ -32,30 +40,36 @@ export default function SignUp() {
       <SignTemplate>
         <form onSubmit={handleSignUp}>
           <input
+            disabled={loading}
             type="email"
             placeholder="email"
             onChange={(e) => setEmail(e.target.value)}
             required
           />
           <input
+            disabled={loading}
             type="password"
             placeholder="senha"
             onChange={(e) => setPassword(e.target.value)}
             required
           />
           <input
+            disabled={loading}
             type="text"
             placeholder="nome"
             onChange={(e) => setName(e.target.value)}
             required
           />
           <input
+            disabled={loading}
             type="url"
             placeholder="foto"
             onChange={(e) => setImage(e.target.value)}
             required
           />
-          <button type="submit">Cadastrar</button>
+          <ButtonTemplate disabled={loading} type="submit">
+            Cadastrar
+          </ButtonTemplate>
         </form>
         <Link to={`/`}>
           <p>Já tem uma conta? Faça login!</p>
