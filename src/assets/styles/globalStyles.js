@@ -48,9 +48,11 @@ button {
 * {
   box-sizing: border-box;
   font-family: 'Lexend Deca', sans-serif;
+  
 }
 body {
     line-height: 1;
+	background-color: #f2f2f2;
 }
 `;
 

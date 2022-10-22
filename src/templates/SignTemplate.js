@@ -20,7 +20,8 @@ const Template = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 70px;
+  padding: 40px 0;
+  background-color: #ffffff;
   form {
     display: flex;
     flex-direction: column;

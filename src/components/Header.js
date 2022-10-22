@@ -1,14 +1,15 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import AuthContext from "../contexts/AuthContext";
 
 export default function Header() {
+  const { user } = useContext(AuthContext);
+
   return (
     <>
       <Head>
         <h2>TrackIt</h2>
-        <img
-          src="https://www.showmetech.com.br/wp-content/uploads//2021/02/capa-dog-1920x1024.jpg"
-          alt="Imagem"
-        />
+        <img src={user.image} alt="Imagem" />
       </Head>
     </>
   );

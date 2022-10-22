@@ -1,12 +1,15 @@
 import SignTemplate from "../../templates/SignTemplate";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
 import { BASE_URL } from "../../constants/url";
 import axios from "axios";
+import AuthContext from "../../contexts/AuthContext";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { setAuth, setUser } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   function handleLogin(e) {
     e.preventDefault();
@@ -17,7 +20,9 @@ export default function Login() {
         password,
       })
       .then((res) => {
-        console.log(res.data);
+        setAuth(true);
+        setUser(res.data);
+        navigate("/hoje");
       })
       .catch((err) => alert(err.response.data.message));
   }

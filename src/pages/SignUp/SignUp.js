@@ -1,5 +1,5 @@
 import SignTemplate from "../../templates/SignTemplate";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { BASE_URL } from "../../constants/url";
 import axios from "axios";
@@ -9,6 +9,7 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
+  const navigate = useNavigate();
 
   function handleSignUp(e) {
     e.preventDefault();
@@ -21,7 +22,7 @@ export default function SignUp() {
         password,
       })
       .then((res) => {
-        console.log(res.data);
+        navigate("/");
       })
       .catch((err) => alert(err.response.data.message));
   }
@@ -54,7 +55,7 @@ export default function SignUp() {
             onChange={(e) => setImage(e.target.value)}
             required
           />
-          <button type="submit">Entrar</button>
+          <button type="submit">Cadastrar</button>
         </form>
         <Link to={`/`}>
           <p>Já tem uma conta? Faça login!</p>
