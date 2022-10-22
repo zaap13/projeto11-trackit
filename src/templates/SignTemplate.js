@@ -38,6 +38,16 @@ const Template = styled.div`
     background: #52b6ff;
     border-radius: 4.63636px;
   }
+  p {
+    font-weight: 400;
+    font-size: 13.976px;
+    line-height: 17px;
+    text-align: center;
+    text-decoration-line: underline;
+    margin-top: 25px;
+
+    color: #52b6ff;
+  }
 `;
 
 const Logo = styled.div`

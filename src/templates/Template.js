@@ -12,7 +12,7 @@ export default function Template({ children }) {
   );
 }
 
-const Main = styled.div`
+const Main = styled.main`
   display: flex;
   align-items: center;
   flex-direction: column;
