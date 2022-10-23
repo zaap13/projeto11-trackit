@@ -2,8 +2,12 @@ import styled from "styled-components";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import ProgressContext from "../contexts/ProgressContext";
 
 export default function Footer() {
+  const { total, done } = useContext(ProgressContext);
+
   return (
     <Foot>
       <Link to={`/habitos`}>
@@ -13,8 +17,8 @@ export default function Footer() {
       <Prog>
         <Link to={`/hoje`}>
           <CircularProgressbar
-            value="4"
-            maxValue="5"
+            value={done}
+            maxValue={total === 0 ? "1" : total}
             text="Hoje"
             styles={buildStyles({
               textSize: "18px",
@@ -42,7 +46,6 @@ const Foot = styled.footer`
   bottom: 0px;
   padding: 10px;
   z-index: 10;
-
 
   background: #ffffff;
 

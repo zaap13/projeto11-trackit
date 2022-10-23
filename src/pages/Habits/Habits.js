@@ -36,8 +36,15 @@ export default function Habits() {
       </Title>
       {show && <NewHabit setShow={setShow} />}
 
+      {habits.length === 0 && (
+        <NoHabits>
+          Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para
+          começar a trackear!
+        </NoHabits>
+      )}
+
       {habits.map((h) => (
-        <Habit name={h.name} days={h.days} id={h.id} />
+        <Habit key={h.id} name={h.name} days={h.days} id={h.id} />
       ))}
     </Template>
   );
@@ -64,4 +71,12 @@ const Button = styled.button`
   background: #52b6ff;
   border-radius: 4.63636px;
   color: #fff;
+`;
+
+const NoHabits = styled.p`
+  font-weight: 400;
+  font-size: 17.976px;
+  line-height: 22px;
+
+  color: #666666;
 `;

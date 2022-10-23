@@ -6,11 +6,13 @@ import axios from "axios";
 import AuthContext from "../contexts/AuthContext";
 import { BASE_URL } from "../constants/url";
 import { useContext } from "react";
-import { confirmAlert } from 'react-confirm-alert'; 
-import 'react-confirm-alert/src/react-confirm-alert.css'; 
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
+import ProgressContext from "../contexts/ProgressContext";
 
 export default function Habit({ name, days, id }) {
-    const { user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
+  const { loadProgress } = useContext(ProgressContext);
 
   let checkDays = initialDays.map((d, i) => {
     if (days.includes(i)) {
@@ -22,28 +24,29 @@ export default function Habit({ name, days, id }) {
 
   function handleDel() {
     confirmAlert({
-        title: `Deletando ${name}`,
-        message: 'deseja prosseguir?',
-        buttons: [
-          {
-            label: 'Sim',
-            onClick: () => {axios
-                .delete(`${BASE_URL}/habits/${id}`, {
-                  headers: { Authorization: `Bearer ${user.token}` },
-                })
-                .then((res) => {
-                  console.log(res.data);
-                })
-                .catch((err) => {
-                  alert(err.response.data.message);
-                });}
+      title: `Deletando ${name}`,
+      message: "deseja prosseguir?",
+      buttons: [
+        {
+          label: "Sim",
+          onClick: () => {
+            axios
+              .delete(`${BASE_URL}/habits/${id}`, {
+                headers: { Authorization: `Bearer ${user.token}` },
+              })
+              .then((res) => {
+                loadProgress();
+              })
+              .catch((err) => {
+                alert(err.response.data.message);
+              });
           },
-          {
-            label: 'No'
-          }
-        ]
-      });
-    
+        },
+        {
+          label: "No",
+        },
+      ],
+    });
   }
 
   return (

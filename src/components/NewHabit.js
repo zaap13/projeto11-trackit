@@ -6,15 +6,15 @@ import axios from "axios";
 import { BASE_URL } from "../constants/url";
 import AuthContext from "../contexts/AuthContext";
 import { initialDays } from "../constants/days";
+import ProgressContext from "../contexts/ProgressContext";
 
 export default function NewHabit({ setShow }) {
-  
-
   const [days, setDays] = useState(initialDays);
   const [clickeds, setClickeds] = useState([]);
   const [habitName, setHabitName] = useState("");
   const [loading, setLoading] = useState(false);
   const { user } = useContext(AuthContext);
+  const { loadProgress } = useContext(ProgressContext);
 
   useEffect(() => {
     const aux = days.map((d, i) => d.clicked && i).filter((d) => d !== false);
@@ -22,7 +22,6 @@ export default function NewHabit({ setShow }) {
   }, [days]);
 
   function handleSave() {
-    
     if (clickeds !== [] && habitName.length > 3) {
       setLoading(true);
       axios
@@ -37,6 +36,7 @@ export default function NewHabit({ setShow }) {
         .then((res) => {
           setLoading(false);
           setShow(false);
+          loadProgress();
         })
         .catch((err) => {
           alert(err.response.data.message);
