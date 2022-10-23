@@ -26,6 +26,7 @@ export const HabitTitle = styled.h3`
 
 export const HabitBox = styled.div`
   display: flex;
+  position: relative;
   flex-direction: column;
   width: 340px;
   height: 94px;

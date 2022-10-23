@@ -41,6 +41,8 @@ const Foot = styled.footer`
   height: 70px;
   bottom: 0px;
   padding: 10px;
+  z-index: 10;
+
 
   background: #ffffff;
 

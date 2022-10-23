@@ -19,7 +19,6 @@ export default function NewHabit({ setShow }) {
   useEffect(() => {
     const aux = days.map((d, i) => d.clicked && i).filter((d) => d !== false);
     setClickeds(aux);
-    console.log(aux);
   }, [days]);
 
   function handleSave() {

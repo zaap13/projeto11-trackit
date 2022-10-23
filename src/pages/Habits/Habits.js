@@ -9,7 +9,7 @@ import { BASE_URL } from "../../constants/url";
 import Habit from "../../components/Habit";
 
 export default function Habits() {
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(false);
   const { user } = useContext(AuthContext);
   const [habits, setHabits] = useState([]);
 
@@ -19,13 +19,12 @@ export default function Habits() {
         headers: { Authorization: `Bearer ${user.token}` },
       })
       .then((res) => {
-        console.log(res);
         setHabits(res.data);
       })
       .catch((err) => {
         alert(err.response.data.message);
       });
-  }, [user, show]);
+  }, [user, show, habits]);
 
   return (
     <Template>
@@ -38,7 +37,7 @@ export default function Habits() {
       {show && <NewHabit setShow={setShow} />}
 
       {habits.map((h) => (
-        <Habit name={h.name} days={h.days} />
+        <Habit name={h.name} days={h.days} id={h.id} />
       ))}
     </Template>
   );
