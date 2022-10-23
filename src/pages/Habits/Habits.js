@@ -6,6 +6,7 @@ import NewHabit from "../../components/NewHabit";
 import axios from "axios";
 import AuthContext from "../../contexts/AuthContext";
 import { BASE_URL } from "../../constants/url";
+import Habit from "../../components/Habit";
 
 export default function Habits() {
   const [show, setShow] = useState(true);
@@ -36,11 +37,8 @@ export default function Habits() {
       </Title>
       {show && <NewHabit setShow={setShow} />}
 
-      {habits.map((h) => ( // Componente HABIT, KEY, ETC
-        <>
-          <p>{h.name}</p>
-          <p>{h.days}</p>
-        </>
+      {habits.map((h) => (
+        <Habit name={h.name} days={h.days} />
       ))}
     </Template>
   );

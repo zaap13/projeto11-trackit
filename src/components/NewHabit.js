@@ -5,17 +5,10 @@ import ButtonTemplate from "../templates/ButtonTemplate";
 import axios from "axios";
 import { BASE_URL } from "../constants/url";
 import AuthContext from "../contexts/AuthContext";
+import { initialDays } from "../constants/days";
 
 export default function NewHabit({ setShow }) {
-  const initialDays = [
-    { name: "D", clicked: false },
-    { name: "S", clicked: false },
-    { name: "T", clicked: false },
-    { name: "Q", clicked: false },
-    { name: "Q", clicked: false },
-    { name: "S", clicked: false },
-    { name: "S", clicked: false },
-  ];
+  
 
   const [days, setDays] = useState(initialDays);
   const [clickeds, setClickeds] = useState([]);
@@ -30,8 +23,9 @@ export default function NewHabit({ setShow }) {
   }, [days]);
 
   function handleSave() {
-    setLoading(true);
+    
     if (clickeds !== [] && habitName.length > 3) {
+      setLoading(true);
       axios
         .post(
           `${BASE_URL}/habits`,

@@ -19,6 +19,7 @@ const Main = styled.main`
   margin: 70px 0;
   width: 100%;
   padding: 20px;
+  gap: 10px;
 
   h2 {
     font-weight: 400;

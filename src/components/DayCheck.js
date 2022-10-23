@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import { Check } from "../assets/styles/styles";
 
 export default function DayCheck({ children, clicked, index, days, setDays, loading }) {
   function handleCheck() {
@@ -22,17 +22,3 @@ export default function DayCheck({ children, clicked, index, days, setDays, load
   );
 }
 
-const Check = styled.button`
-  width: 30px;
-  height: 30px;
-
-  border: 1px solid #d5d5d5;
-  border-radius: 5px;
-
-  font-weight: 400;
-  font-size: 19.976px;
-  line-height: 25px;
-
-  color: ${(props) => (props.clicked ? "#ffffff" : "#dbdbdb")};
-  background-color: ${(props) => (props.clicked ? "#CFCFCF" : "#ffffff")};
-`;
