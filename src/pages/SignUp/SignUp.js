@@ -67,7 +67,7 @@ export default function SignUp() {
             onChange={(e) => setImage(e.target.value)}
             required
           />
-          <ButtonTemplate disabled={loading} type="submit">
+          <ButtonTemplate disabled={loading} loading={loading} type="submit">
             Cadastrar
           </ButtonTemplate>
         </form>

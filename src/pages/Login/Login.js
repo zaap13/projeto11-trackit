@@ -51,7 +51,7 @@ export default function Login() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <ButtonTemplate type="submit" disabled={loading}>
+        <ButtonTemplate type="submit" disabled={loading} loading={loading}>
           Entrar
         </ButtonTemplate>
       </form>

@@ -19,4 +19,12 @@ const Main = styled.main`
   margin: 70px 0;
   width: 100%;
   padding: 20px;
+
+  h2 {
+    font-weight: 400;
+    font-size: 22.976px;
+    line-height: 29px;
+
+    color: #126ba5;
+  }
 `;

@@ -44,6 +44,7 @@ table {
 }
 button {
   border: none;
+  background: none;
 }
 * {
   box-sizing: border-box;

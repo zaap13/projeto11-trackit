@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import logo from "../assets/images/logo.jpeg";
-import ButtonTemplate from "./ButtonTemplate";
 
 export default function SignTemplate({ children }) {
   return (
