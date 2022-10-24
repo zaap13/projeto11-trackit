@@ -10,10 +10,8 @@ import AuthContext from "../../contexts/AuthContext";
 
 export default function History() {
   const [value, setValue] = useState(new Date());
-  const [history, setHistory] = useState([]);
   const { user } = useContext(AuthContext);
   const [undones, setUndones] = useState([]);
-  const [allDates, setAllDates] = useState([]);
   const [dones, setDones] = useState([]);
 
   useEffect(() => {
@@ -22,17 +20,11 @@ export default function History() {
         headers: { Authorization: `Bearer ${user.token}` },
       })
       .then((res) => {
-        setHistory(res.data);
         setUndones(
           res.data.filter((i) =>
             i.habits.find(
               (i) => i.done === false && dayjs(i.date).format("DD/MM/YYYY")
             )
-          )
-        );
-        setAllDates(
-          res.data.filter((i) =>
-            i.habits.find((i) => dayjs(i.date).format("DD/MM/YYYY"))
           )
         );
         setDones(

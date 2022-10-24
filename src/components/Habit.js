@@ -34,7 +34,7 @@ export default function Habit({ name, days, id }) {
               .delete(`${BASE_URL}/habits/${id}`, {
                 headers: { Authorization: `Bearer ${user.token}` },
               })
-              .then((res) => {
+              .then(() => {
                 loadProgress();
               })
               .catch((err) => {

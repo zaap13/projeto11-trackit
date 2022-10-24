@@ -5,7 +5,6 @@ import { BASE_URL } from "../../constants/url";
 import axios from "axios";
 import ButtonTemplate from "../../templates/ButtonTemplate";
 
-
 export default function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,7 +24,7 @@ export default function SignUp() {
         image,
         password,
       })
-      .then((res) => {
+      .then(() => {
         setLoading(false);
         navigate("/");
       })
