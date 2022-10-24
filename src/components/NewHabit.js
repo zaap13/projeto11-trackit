@@ -5,13 +5,18 @@ import ButtonTemplate from "../templates/ButtonTemplate";
 import axios from "axios";
 import { BASE_URL } from "../constants/url";
 import AuthContext from "../contexts/AuthContext";
-import { initialDays } from "../constants/days";
 import ProgressContext from "../contexts/ProgressContext";
+import { initialDays } from "../constants/days";
 
-export default function NewHabit({ setShow }) {
-  const [days, setDays] = useState(initialDays);
-  const [clickeds, setClickeds] = useState([]);
-  const [habitName, setHabitName] = useState("");
+export default function NewHabit({
+  setShow,
+  setHabitName,
+  habitName,
+  setClickeds,
+  clickeds,
+  days,
+  setDays,
+}) {
   const [loading, setLoading] = useState(false);
   const { user } = useContext(AuthContext);
   const { loadProgress } = useContext(ProgressContext);
@@ -22,7 +27,7 @@ export default function NewHabit({ setShow }) {
   }, [days]);
 
   function handleSave() {
-    if (clickeds !== [] && habitName.length > 3) {
+    if (clickeds !== [] && habitName.length > 2) {
       setLoading(true);
       axios
         .post(
@@ -36,6 +41,10 @@ export default function NewHabit({ setShow }) {
         .then((res) => {
           setLoading(false);
           setShow(false);
+          setHabitName("");
+          setClickeds([]);
+          setDays(initialDays);
+
           loadProgress();
         })
         .catch((err) => {
@@ -50,6 +59,7 @@ export default function NewHabit({ setShow }) {
         disabled={loading}
         type="text"
         placeholder="nome do hábito"
+        value={habitName}
         onChange={(e) => setHabitName(e.target.value)}
       />
       <DaysCheck>

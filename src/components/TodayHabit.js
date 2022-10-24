@@ -18,10 +18,6 @@ export default function TodayHabit({
   const { loadProgress } = useContext(ProgressContext);
   const [loading, setLoading] = useState(false);
 
-  
-
-  
-
   function handleCheck() {
     setLoading(true);
     if (!done) {
@@ -35,7 +31,9 @@ export default function TodayHabit({
         )
         .then((res) => {
           loadProgress();
-          setLoading(false);
+          setTimeout(() => {
+            setLoading(false);
+          }, 1000);
         })
         .catch((err) => {
           alert(err.response.data.message);
@@ -51,7 +49,9 @@ export default function TodayHabit({
         )
         .then((res) => {
           loadProgress();
-          setLoading(false);
+          setTimeout(() => {
+            setLoading(false);
+          }, 1000);
         })
         .catch((err) => {
           alert(err.response.data.message);
@@ -63,8 +63,16 @@ export default function TodayHabit({
     <TodayBox>
       <Left>
         <HabitTitle>{name}</HabitTitle>
-        <Sequence>Sequência atual: {currentSequence} dias</Sequence>
-        <Sequence>Seu recorde: {highestSequence} dias</Sequence>
+        <Sequence>
+          Sequência atual
+          <CheckSequence done={done}>: {currentSequence} dias</CheckSequence>
+        </Sequence>
+        <Sequence>
+          Seu recorde
+          <CheckSequence done={done && currentSequence === highestSequence}>
+            : {highestSequence} dias
+          </CheckSequence>
+        </Sequence>
       </Left>
       <button disabled={loading} onClick={handleCheck}>
         <CheckBox done={done} />
@@ -92,9 +100,14 @@ const Left = styled.div`
 `;
 
 const Sequence = styled.p`
+  display: flex;
   font-weight: 400;
   font-size: 12.976px;
   line-height: 16px;
 
   color: #666666;
+`;
+
+const CheckSequence = styled.p`
+  color: ${(props) => (props.done ? "#8FC549" : "#666666")};
 `;

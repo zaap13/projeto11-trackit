@@ -7,11 +7,16 @@ import axios from "axios";
 import AuthContext from "../../contexts/AuthContext";
 import { BASE_URL } from "../../constants/url";
 import Habit from "../../components/Habit";
+import { initialDays } from "../../constants/days";
 
 export default function Habits() {
   const [show, setShow] = useState(false);
   const { user } = useContext(AuthContext);
   const [habits, setHabits] = useState([]);
+
+  const [clickeds, setClickeds] = useState([]);
+  const [habitName, setHabitName] = useState("");
+  const [days, setDays] = useState(initialDays);
 
   useEffect(() => {
     axios
@@ -34,7 +39,17 @@ export default function Habits() {
           <Icon />
         </Button>
       </Title>
-      {show && <NewHabit setShow={setShow} />}
+      {show && (
+        <NewHabit
+          setShow={setShow}
+          clickeds={clickeds}
+          setClickeds={setClickeds}
+          habitName={habitName}
+          setHabitName={setHabitName}
+          days={days}
+          setDays={setDays}
+        />
+      )}
 
       {habits.length === 0 && (
         <NoHabits>
